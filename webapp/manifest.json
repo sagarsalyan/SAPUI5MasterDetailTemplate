@@ -1,0 +1,128 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "app.SAPUI5MasterDetailTemplate",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "app.SAPUI5MasterDetailTemplate.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "App"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "app.SAPUI5MasterDetailTemplate.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "app.SAPUI5MasterDetailTemplate.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "master",
+				"pattern": "",
+				"target": [
+					"master"
+				]
+			}, {
+				"name": "orderDetails",
+				"pattern": "orders/:orderId:",
+				"target": [
+					"master",
+					"orderDetails"
+				]
+			}, {
+				"name": "productDetails",
+				"pattern": "orders/:orderId:/products/:productId:",
+				"target": [
+					"master",
+					"productDetails"
+				]
+			}],
+			"targets": {
+				"master": {
+					"viewName": "Master",
+					"controlAggregation": "masterPages",
+					"viewLevel": 0
+				},
+				"orderDetails": {
+					"viewName": "Detail1",
+					"controlAggregation": "detailPages",
+					"title": {
+						"parts": [
+							"orderName"
+						],
+						"formatter": "jQuery.sap.formatMessage"
+					},
+					"viewLevel": 1
+				},
+				"productDetails": {
+					"viewName": "Detail2",
+					"controlAggregation": "detailPages",
+					"title": {
+						"parts": [
+							"productName"
+						],
+						"formatter": "jQuery.sap.formatMessage"
+					},
+					"viewLevel": 2
+				}
+			}
+		}
+	}
+}
