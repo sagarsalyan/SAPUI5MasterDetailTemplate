@@ -59,9 +59,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -71,29 +73,37 @@
 				"viewPath": "app.SAPUI5MasterDetailTemplate.view",
 				"controlAggregation": "pages",
 				"controlId": "app",
-				"clearControlAggregation": false
+				"clearControlAggregation": false,
+				"bypassed":{
+					"target":"NotFound"
+				}
+				
 			},
-			"routes": [{
-				"name": "master",
-				"pattern": "",
-				"target": [
-					"master"
-				]
-			}, {
-				"name": "orderDetails",
-				"pattern": "orders/:orderId:",
-				"target": [
-					"master",
-					"orderDetails"
-				]
-			}, {
-				"name": "productDetails",
-				"pattern": "orders/:orderId:/products/:productId:",
-				"target": [
-					"master",
-					"productDetails"
-				]
-			}],
+			"routes": [
+				{
+					"name": "master",
+					"pattern": "",
+					"target": [
+						"master"
+					]
+				},
+				{
+					"name": "orderDetails",
+					"pattern": "orders/:orderId:",
+					"target": [
+						"master",
+						"orderDetails"
+					]
+				},
+				{
+					"name": "productDetails",
+					"pattern": "orders/:orderId:/products/:productId:",
+					"target": [
+						"master",
+						"productDetails"
+					]
+				}
+			],
 			"targets": {
 				"master": {
 					"viewName": "Master",
@@ -121,6 +131,11 @@
 						"formatter": "jQuery.sap.formatMessage"
 					},
 					"viewLevel": 2
+				},
+				"NotFound": {
+					"viewType": "XML",
+					"viewName": "NotFound",
+					"controlAggregation": "detailPages"
 				}
 			}
 		}
